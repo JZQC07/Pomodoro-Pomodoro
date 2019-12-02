@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/produktion/Desktop/hello-world/Pomodoro pomodoro/PomodoroConsole/PomodoroConsole.csproj": {}
+  },
+  "projects": {
+    "/Users/produktion/Desktop/hello-world/Pomodoro pomodoro/PomodoroConsole/PomodoroConsole.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/produktion/Desktop/hello-world/Pomodoro pomodoro/PomodoroConsole/PomodoroConsole.csproj",
+        "projectName": "PomodoroConsole",
+        "projectPath": "/Users/produktion/Desktop/hello-world/Pomodoro pomodoro/PomodoroConsole/PomodoroConsole.csproj",
+        "packagesPath": "/Users/produktion/.nuget/packages/",
+        "outputPath": "/Users/produktion/Desktop/hello-world/Pomodoro pomodoro/PomodoroConsole/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/produktion/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
