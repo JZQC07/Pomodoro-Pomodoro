@@ -12,7 +12,13 @@ namespace PomodoroLibrary
     //TODO: History over finished activities
     public class ToDoList
     {
+        //Lagring för konstruktor som tar in en task. 
 
+        //Metod som lägger till i listan
+
+        //Metod som tar bort
+
+        //Kunna anropa metoden från TodoList.cs
     }
     
     /// <summary>
