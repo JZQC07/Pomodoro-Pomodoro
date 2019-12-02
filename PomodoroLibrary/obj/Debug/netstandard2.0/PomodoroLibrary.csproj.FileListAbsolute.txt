@@ -1,0 +1,9 @@
+/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/Debug/netstandard2.0/PomodoroLibrary.csprojAssemblyReference.cache
+/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/Debug/netstandard2.0/PomodoroLibrary.csproj.CoreCompileInputs.cache
+/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/Debug/netstandard2.0/PomodoroLibrary.AssemblyInfoInputs.cache
+/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/Debug/netstandard2.0/PomodoroLibrary.AssemblyInfo.cs
+/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/bin/Debug/netstandard2.0/PomodoroLibrary.deps.json
+/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/bin/Debug/netstandard2.0/PomodoroLibrary.dll
+/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/bin/Debug/netstandard2.0/PomodoroLibrary.pdb
+/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/Debug/netstandard2.0/PomodoroLibrary.dll
+/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/Debug/netstandard2.0/PomodoroLibrary.pdb

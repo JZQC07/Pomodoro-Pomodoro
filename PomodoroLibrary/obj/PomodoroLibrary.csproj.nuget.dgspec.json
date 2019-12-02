@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/PomodoroLibrary.csproj": {}
+  },
+  "projects": {
+    "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/PomodoroLibrary.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/PomodoroLibrary.csproj",
+        "projectName": "PomodoroLibrary",
+        "projectPath": "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/PomodoroLibrary.csproj",
+        "packagesPath": "/Users/produktion/.nuget/packages/",
+        "outputPath": "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/produktion/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
