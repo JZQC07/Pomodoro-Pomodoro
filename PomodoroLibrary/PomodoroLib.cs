@@ -1,26 +1,117 @@
 ﻿using System;
 using System.Timers;
+using System.Collections.Generic;
+using System.Linq;
 namespace PomodoroLibrary
 {
     //TODO  Metod för user
-    //TODO: Add to TODO list
-    //TODO: Print TODO list
     //TODO: Färdiga Presets (Intervaller, studera, städa osvosv)
     //TODO: Menu
-    //TODO: Pin TODO as done
-    //TODO: Remove activity from TODO when finished
     //TODO: History over finished activities
-    public class ToDoList
+
+    /*-----------------------------------Stack Overflow------------------------------------*/
+    public class ToDoListMethods
     {
-        //Lagring för konstruktor som tar in en task. 
+        public class TaskItem
+        {
+            public int Number { get; set; }
+            public string Title { get; set; }
+            public string Description { get; set; }
+            public bool IsCompleted { get; set; }
+            public double Timer { get; set; }
 
-        //Metod som lägger till i listan
+            public TaskItem()
+            {
 
-        //Metod som tar bort
+            }
+            public TaskItem(string title)
+            {
+                Title = title;
+            }
+
+            public TaskItem(string title, string desc)
+            {
+                Title = title;
+                Description = desc;
+                IsCompleted = false;
+            }
+            public TaskItem(int number, string title, string desc)
+            {
+                Number = number;
+                Title = title;
+                Description = desc;
+                IsCompleted = false;
+            }
+            public TaskItem(int number, string title, string desc, double timer)
+            {
+                Number = number;
+                Title = title;
+                Description = desc;
+                Timer = timer;
+                IsCompleted = false;
+            }
+        }
+
+        public class TaskList : List<TaskItem>
+        {
+            public TaskList()
+            {
+
+            }
+
+            public void Add(string title, string desc)
+            {
+                int numberOfTasks = this.Count();
+                int number = numberOfTasks++;
+
+                this.Add(new TaskItem(number, title, desc));
+            }
+
+            public void DisplayList()
+            {
+                //Console.CLear();
+                //Console.WriteLine("\t Task List");
+                Console.WriteLine();
+                Console.WriteLine("Num |  Title  | Description  | Timer |");
+                Console.WriteLine("--------------------------------------");
+                foreach (var t in this)
+                {
+                    Console.WriteLine("{0}     {1}\t{2}\t{3}", t.Number.ToString(),
+                                                         t.Title,
+                                                         t.Description,
+                                                         t.Timer);
+                }
+            }
+
+            public void NewTaskItem()
+            {
+                string title = String.Empty;
+                string desc = String.Empty;
+
+                Console.Write("Enter new task Title: ");
+                title = Console.ReadLine().Trim();
+                Console.WriteLine("{0}\n", title);
+
+                Console.Write("Enter new task Description: ");
+                desc = Console.ReadLine();
+                Console.WriteLine("\"{0}\"", desc);
+
+                this.Add(title, desc);
+            }
+            public void RemoveTaskItem()
+            {
+                Console.WriteLine("Mata in nummer för vilken task du vill ta bort från din lista: ");
+                DisplayList();
+                int removeChoice = Int32.Parse(Console.ReadLine());
+                this.RemoveAt(removeChoice - 1);        
+            }
+        }
+
+        /*-----------------------------------------------STACK OVERFLOW-------------------------------------------*/
 
         //Kunna anropa metoden från TodoList.cs
     }
-    
+
     /// <summary>
     /// Timer Class
     /// </summary>
@@ -39,13 +130,13 @@ namespace PomodoroLibrary
         Timer breakTimer;
 
         //Properties
-        private int setTaskMinutes {get;set;}
-        private int setTaskSeconds {get;set;}
-        private int setBreakMinutes {get;set;}
-        private int setBreakSeconds {get;set;}
+        private int setTaskMinutes { get; set; }
+        private int setTaskSeconds { get; set; }
+        private int setBreakMinutes { get; set; }
+        private int setBreakSeconds { get; set; }
 
         // Constructor with in-parameters
-        public Pomodoro (int setTaskMinutes, int setTaskSeconds, int setBreakMinutes, int setBreakSeconds)
+        public Pomodoro(int setTaskMinutes, int setTaskSeconds, int setBreakMinutes, int setBreakSeconds)
         {
             this.setTaskMinutes = setTaskMinutes;
             this.setTaskSeconds = setTaskSeconds;
@@ -66,24 +157,24 @@ namespace PomodoroLibrary
         {
             taskTimer.Stop();
         }
-        
+
         //Method that is raised each time tasktimer elapses
         private void taskEvent(object sender, EventArgs e)
         {
             Console.Clear();
-            onFocus.Invoke(this.setTaskMinutes,this.setTaskSeconds);
-                         
-                if (this.setTaskMinutes <= 0 && this.setTaskSeconds <= 0)
-                {
-                    stopTaskTimer();
-                }
+            onFocus.Invoke(this.setTaskMinutes, this.setTaskSeconds);
 
-                this.setTaskSeconds--;
-                if (this.setTaskSeconds <= -1)
-                {
-                    this.setTaskMinutes--;
-                    this.setTaskSeconds = 59;
-                }
+            if (this.setTaskMinutes <= 0 && this.setTaskSeconds <= 0)
+            {
+                stopTaskTimer();
+            }
+
+            this.setTaskSeconds--;
+            if (this.setTaskSeconds <= -1)
+            {
+                this.setTaskMinutes--;
+                this.setTaskSeconds = 59;
+            }
         }
 
         //Method that starts breaktimer, set to 1 sec for each elapse
@@ -104,20 +195,20 @@ namespace PomodoroLibrary
         private void breakEvent(object sender, EventArgs e)
         {
             Console.Clear();
-            onBreak.Invoke(this.setBreakMinutes,this.setBreakSeconds);
+            onBreak.Invoke(this.setBreakMinutes, this.setBreakSeconds);
 
-                
-                if (this.setBreakMinutes <= 0 && this.setBreakSeconds <= 0)
-                {
-                    stopBreakTimer();
-                }
 
-                this.setBreakSeconds--;
-                if (this.setBreakSeconds <= -1)
-                {
-                    this.setBreakMinutes--;
-                    this.setBreakSeconds = 59;
-                }
+            if (this.setBreakMinutes <= 0 && this.setBreakSeconds <= 0)
+            {
+                stopBreakTimer();
+            }
+
+            this.setBreakSeconds--;
+            if (this.setBreakSeconds <= -1)
+            {
+                this.setBreakMinutes--;
+                this.setBreakSeconds = 59;
+            }
         }
     }
 }

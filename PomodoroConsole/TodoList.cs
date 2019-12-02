@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pomodoro_Project;
 
 namespace Pomodoro_Project
 {
-    class Program
+    class ToDoList
     {
 
         static void Main(string[] args)
         {
+            PomodoroLibrary.PomodoroLib pomoLib = new PomodoroLibrary.PomodoroLib();
 
-            ToDo Pomodoro = new ToDo();
+            pomoLib.TaskItem.Add("0", "Plugga", "C# For experts", 25);
+            
+        }
 
-            ToDoItem toDoObject = new ToDoItem();
+    }
+    class Menu
+    {
+        bool menu = true;
 
-            bool menu = true;
-
-            while (menu == true)
+            while(menu == true)
             {
 
                 try
@@ -29,55 +32,51 @@ namespace Pomodoro_Project
                     Console.Clear();
 
                     string toDo;
+                    
 
                     switch (answer)
                     {
                         case 1:
 
-                            Pomodoro.PrintToDoList();
-                            Console.ReadKey();
-
+                            pomoLib.DisplayList();
                             break;
                         case 2:
 
+                            
                             bool subMenu = true;
-
                             while (subMenu == true)
                             {
-
                                 try
                                 {
 
-
                                     Console.Write("\nPresets:\n1.[Städa]\n2.[Träna]\n3.[Studera]\n4.[Annat]\n5.[Tillbaka till huvudmenyn]");
                                     int choice = Int32.Parse(Console.ReadLine());
-
 
                                     switch (choice)
                                     {
 
                                         case 1:
-                                            toDoObject.item = "Städa";
-                                            Pomodoro.AddToDoList(toDoObject.item);
+                                            TaskItem.item = "Städa";
+                                            pomolib.AddToDoList(TaskItem.item);
                                             subMenu = false;
                                             break;
 
                                         case 2:
-                                            toDoObject.item = "Träna";
-                                            Pomodoro.AddToDoList(toDoObject.item);
+                                            TaskItem.item = "Träna";
+                                            pomolib.AddToDoList(TaskItem.item);
                                             subMenu = false;
                                             break;
 
                                         case 3:
                                             toDoObject.item = "Studera";
-                                            Pomodoro.AddToDoList(toDoObject.item);
+                                            pomolib.AddToDoList(TaskItem.item);
                                             subMenu = false;
                                             break;
 
                                         case 4:
                                             Console.Write("-----------------\nSkriv in aktivitet: ");
                                             toDo = Console.ReadLine();
-                                            Pomodoro.AddToDoList(toDo);
+                                            pomolib.AddToDoList(toDo);
                                             subMenu = false;
                                             break;
                                         case 5:
@@ -102,7 +101,7 @@ namespace Pomodoro_Project
                         case 3:
 
 
-                            if (Pomodoro.ToDoList.Count == 0)
+                            if (pomoLib.antaliindexilistan == 0)
                             {
                                 Console.Clear();
                                 Console.WriteLine("Det finns inget inskrivet i listan.");
@@ -111,17 +110,14 @@ namespace Pomodoro_Project
                             }
                             else
                             {
-                                Pomodoro.PrintToDoList();
-                                Console.Write("----------------\nSkriv in numret framför den aktivitet du vill ta bort från listan: ");
-                                int delete = Int32.Parse(Console.ReadLine());
-                                Pomodoro.DeleteFromList(delete);
+                                pomoLib.RemoveTaskItem(); //Skickas till removetaskitem metoden
 
                             }
 
                             menu = false;
 
                             break;
-                        case 4:
+                        case 4:         /*-----------------------SKALL BÖRJA EDITA HÄR--------------------------*/
 
                             if (Pomodoro.ToDoList.Count != 0)
                             {
@@ -166,109 +162,6 @@ namespace Pomodoro_Project
 
 
 
-            }
-
-
-        }
-    }
-
-
-
-    public class ToDoItem
-    {
-        public string item;
-
-    }
-    public class ToDo : ToDoItem
-    {
-
-        public List<string> ToDoList = new List<string>();
-        public List<string> HistoryList = new List<string>();
-
-        public void AddToDoList(string item)
-        {
-
-            ToDoList.Add(item);
-
-        }
-        public void DeleteFromList(int delete)
-        {
-
-            //Subtraherar med 1 för att få indexet att hamna i rätt position i listan
-            ToDoList.RemoveAt(delete - 1);
-            HistoryList.RemoveAt(delete - 1);
-
-
-
-        }
-
-        public void PrintToDoList()
-        {
-
-            if (ToDoList.Count != 0)
-            {
-
-                int nr = 0;
-
-                foreach (string elements in ToDoList)
-                {
-                    nr++;
-                    Console.Write(nr + ". " + elements + "\n");
-                }
-
-            }
-            else
-            {
-
-                Console.Write("Finns inget i listan.\n");
-            }
-
-        }
-
-        public void AddToFinished(int index)
-        {
-
-            //Subtraherar indexet med 1 för att hamna på rätt index i listan
-
-            //Sätter in aktiviteten från ToDoList i HistoryList vid det bestämda indexet            
-            HistoryList.Add(ToDoList[index - 1]);
-
-            //Tar bort aktiviteten från ToDoList
-            ToDoList.RemoveAt(index - 1);
-
-
-        }
-
-        public void ShowHistoryList()
-        {
-
-
-            int nr = 0;
-
-            if (ToDoList.Equals(HistoryList) == false && HistoryList.Count != 0)
-            {
-
-                foreach (string elements in HistoryList)
-                {
-
-                    nr++;
-                    Console.Write(nr + ". " + elements + "\n");
-
-
-                }
-
-                Console.ReadKey();
-            }
-            else
-            {
-
-                Console.Write("Finns inga avklarade aktiviteter i listan.");
-                Console.ReadKey();
-
-            }
-
-        }
-
-    }
-
-}
+            }      
+   
+    }   
