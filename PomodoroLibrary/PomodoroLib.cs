@@ -99,11 +99,6 @@ namespace PomodoroLibrary
             int removeChoice = Int32.Parse(Console.ReadLine());
             this.RemoveAt(removeChoice);
         }
-        public void AddToFinished()
-        {
-
-        }
-        
     }
 
     /*-----------------------------------------------STACK OVERFLOW-------------------------------------------*/

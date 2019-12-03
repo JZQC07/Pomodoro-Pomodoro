@@ -14,6 +14,7 @@ namespace Pomodoro_Project
         {
             PomodoroLibrary.TaskItem taskItem = new PomodoroLibrary.TaskItem();
             PomodoroLibrary.TaskList taskList = new PomodoroLibrary.TaskList();
+            
 
             taskList = new TaskList();
             Menu myMenu = new Menu();
@@ -31,7 +32,7 @@ namespace Pomodoro_Project
 
             while (menu == true)
             {
-                Console.WriteLine("***POMODORO***\n\n1.[Visa ToDo-listan]\n2.[Lägg till i ToDo-listan]\n3.[Ta bort från ToDo-listan]\n4.[Lägg till avklarad aktivitet]\n5.[Visa avklarade aktiviteter]\n6.[Exit]");
+                Console.WriteLine("***POMODORO***\n\n1.[Visa ToDo-listan]\n2.[Lägg till i ToDo-listan]\n3.[Ta bort från ToDo-listan]\n4.[Lägg till avklarad aktivitet]\n5.[Visa avklarade aktiviteter]\n6.[Starta aktivitet]\n7.[Exit]");
                 int answer = Int32.Parse(Console.ReadLine());
 
                 switch (answer)
@@ -80,6 +81,9 @@ namespace Pomodoro_Project
                                     case 5:
                                         subMenu = false;
                                         break;
+                                    case 6:
+                                        
+                                        break;
                                     default:
                                         Console.WriteLine("Mata in giltligt alternativ!");
                                         break;
@@ -121,10 +125,33 @@ namespace Pomodoro_Project
                         if (item.NumberOfTasks != 0)
                         {
                             task.DisplayList();
-                            Console.Write("Skriv in nummer för vilken aktivitet som är avklarad: ");
-                            int index = Int32.Parse(Console.ReadLine());
+                            bool work = false;
 
-                            //.AddToFinished(index);
+                            do
+                            {
+                                try
+                                {
+                                    Console.Write("Skriv in nummer för vilken aktivitet som är avklarad: ");
+                                    int index = Int32.Parse(Console.ReadLine());
+                                }
+                                catch (System.Exception)
+                                {
+                                    
+                                    Console.WriteLine("Mata in ett giltligt nummer!");
+                                    work = true;
+                                    
+                                    
+                                }
+                            }
+                            while(work == true);
+                            
+
+                            
+
+
+
+
+                            //.AddToFinished(index); ---Lägga över från listan till historylistan
 
                         }
                         else
@@ -138,14 +165,17 @@ namespace Pomodoro_Project
                         break;
                     case 5:
 
-                        //SKRIV UT FÄRDIGA TODOS
+                        //SKRIV UT FÄRDIGA TODOS. SKRIVA UT HISTORY LISTAN
 
                         break;
 
                     case 6:
+                        //Avsluta aktivitet
+                        break;
+
+                    case 7:
 
                         menu = false;
-
                         break;
                 }
 
