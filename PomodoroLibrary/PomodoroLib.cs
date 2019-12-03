@@ -4,113 +4,112 @@ using System.Collections.Generic;
 using System.Linq;
 namespace PomodoroLibrary
 {
-    //TODO  Metod för user
-    //TODO: Färdiga Presets (Intervaller, studera, städa osvosv)
-    //TODO: Menu
     //TODO: History over finished activities
+    //TODO: I MENY KUNNA VÄLJA AKTIVITET ATT STARTA.
+    //TODO: TIMER SKALL SÄTTAS FÖR DEN SPECIFIKA AKTIVITETEN.
+    //TODO: TIMER SKALL STARTAS OCH STOPPAS. NÄR SLUT, TAS TILLBAKA TILL HUVUDMENYN.
+    //TODO: Aktiviteten skall raderas och läggas till i historiklistan.
+    //TODO; OKRASCHBART
+
 
     /*-----------------------------------Stack Overflow------------------------------------*/
-    public class ToDoListMethods
+
+    public class TaskItem
     {
-        public class TaskItem
+        public int Number { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public bool IsCompleted { get; set; }
+        public int NumberOfTasks {get; set;}
+
+        public TaskItem()
         {
-            public int Number { get; set; }
-            public string Title { get; set; }
-            public string Description { get; set; }
-            public bool IsCompleted { get; set; }
-            public double Timer { get; set; }
 
-            public TaskItem()
-            {
-
-            }
-            public TaskItem(string title)
-            {
-                Title = title;
-            }
-
-            public TaskItem(string title, string desc)
-            {
-                Title = title;
-                Description = desc;
-                IsCompleted = false;
-            }
-            public TaskItem(int number, string title, string desc)
-            {
-                Number = number;
-                Title = title;
-                Description = desc;
-                IsCompleted = false;
-            }
-            public TaskItem(int number, string title, string desc, double timer)
-            {
-                Number = number;
-                Title = title;
-                Description = desc;
-                Timer = timer;
-                IsCompleted = false;
-            }
+        }
+        public TaskItem(string title)
+        {
+            Title = title;
         }
 
-        public class TaskList : List<TaskItem>
+        public TaskItem(string title, string desc)
         {
-            public TaskList()
-            {
-
-            }
-
-            public void Add(string title, string desc)
-            {
-                int numberOfTasks = this.Count();
-                int number = numberOfTasks++;
-
-                this.Add(new TaskItem(number, title, desc));
-            }
-
-            public void DisplayList()
-            {
-                //Console.CLear();
-                //Console.WriteLine("\t Task List");
-                Console.WriteLine();
-                Console.WriteLine("Num |  Title  | Description  | Timer |");
-                Console.WriteLine("--------------------------------------");
-                foreach (var t in this)
-                {
-                    Console.WriteLine("{0}     {1}\t{2}\t{3}", t.Number.ToString(),
-                                                         t.Title,
-                                                         t.Description,
-                                                         t.Timer);
-                }
-            }
-
-            public void NewTaskItem()
-            {
-                string title = String.Empty;
-                string desc = String.Empty;
-
-                Console.Write("Enter new task Title: ");
-                title = Console.ReadLine().Trim();
-                Console.WriteLine("{0}\n", title);
-
-                Console.Write("Enter new task Description: ");
-                desc = Console.ReadLine();
-                Console.WriteLine("\"{0}\"", desc);
-
-                this.Add(title, desc);
-            }
-            public void RemoveTaskItem()
-            {
-                Console.WriteLine("Mata in nummer för vilken task du vill ta bort från din lista: ");
-                DisplayList();
-                int removeChoice = Int32.Parse(Console.ReadLine());
-                this.RemoveAt(removeChoice - 1);        
-            }
+            Title = title;
+            Description = desc;
+            IsCompleted = false;
         }
-
-        /*-----------------------------------------------STACK OVERFLOW-------------------------------------------*/
-
-        //Kunna anropa metoden från TodoList.cs
+        public TaskItem(int number, string title, string desc)
+        {
+            Number = number;
+            Title = title;
+            Description = desc;
+            IsCompleted = false;
+        }
     }
+    public class TaskList : List<TaskItem>
+    {
+        public TaskList()
+        {
+
+        }
+
+        public void Add(string title, string desc)
+        {
+            
+            int NumberOfTasks = this.Count();
+            int number = NumberOfTasks++;
+            
+
+            this.Add(new TaskItem(number, title, desc));
+        }
+
+        public void DisplayList()
+        {
+            Console.WriteLine("\t Task List");
+            Console.WriteLine();
+            Console.WriteLine("Num |  Title  | Description  |");
+            Console.WriteLine("------------------------------");
+            foreach (var t in this)
+            {
+                Console.WriteLine("{0}       {1}\t{2}", t.Number.ToString(),
+                                                     t.Title,
+                                                     t.Description
+                                                     );
+            }
+        }
+
+        public void NewTaskItem()
+        {
+            string title = String.Empty;
+            string desc = String.Empty;
+
+            Console.Write("Enter new task Title: ");
+            title = Console.ReadLine().Trim();
+            Console.WriteLine("{0}\n", title);
+
+            Console.Write("Enter new task Description: ");
+            desc = Console.ReadLine();
+            Console.WriteLine("\"{0}\"", desc);
+
+            this.Add(title, desc);
+        }
+        public void RemoveTaskItem()
+        {
+            Console.WriteLine("Mata in nummer för vilken task du vill ta bort från din lista: ");
+            DisplayList();
+            int removeChoice = Int32.Parse(Console.ReadLine());
+            this.RemoveAt(removeChoice);
+        }
+        public void AddToFinished()
+        {
+
+        }
+        
+    }
+
+    /*-----------------------------------------------STACK OVERFLOW-------------------------------------------*/
+
+    //Kunna anropa metoden från TodoList.cs
+
 
     /// <summary>
     /// Timer Class

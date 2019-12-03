@@ -1,167 +1,156 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using PomodoroLibrary;
 
 namespace Pomodoro_Project
 {
+
     class ToDoList
     {
 
         static void Main(string[] args)
         {
-            PomodoroLibrary.PomodoroLib pomoLib = new PomodoroLibrary.PomodoroLib();
+            PomodoroLibrary.TaskItem taskItem = new PomodoroLibrary.TaskItem();
+            PomodoroLibrary.TaskList taskList = new PomodoroLibrary.TaskList();
 
-            pomoLib.TaskItem.Add("0", "Plugga", "C# For experts", 25);
-            
+            taskList = new TaskList();
+            Menu myMenu = new Menu();
+            myMenu.MainMenu();
         }
 
     }
     class Menu
     {
-        bool menu = true;
+        TaskList task = new TaskList();
+        TaskItem item = new TaskItem();
+        public void MainMenu()
+        {
+            bool menu = true;
 
-            while(menu == true)
+            while (menu == true)
             {
+                Console.WriteLine("***POMODORO***\n\n1.[Visa ToDo-listan]\n2.[Lägg till i ToDo-listan]\n3.[Ta bort från ToDo-listan]\n4.[Lägg till avklarad aktivitet]\n5.[Visa avklarade aktiviteter]\n6.[Exit]");
+                int answer = Int32.Parse(Console.ReadLine());
 
-                try
+                switch (answer)
                 {
+                    case 1:
+                        task.DisplayList();
 
-                    Console.Clear();
-                    Console.WriteLine("***POMODORO***\n\n1.[Visa ToDo-listan]\n2.[Lägg till i ToDo-listan]\n3.[Ta bort från ToDo-listan]\n4.[Lägg till avklarad aktivitet]\n5.[Visa avklarade aktiviteter]\n6.[Exit]");
-                    int answer = Int32.Parse(Console.ReadLine());
-                    Console.Clear();
+                        break;
+                    case 2:
 
-                    string toDo;
-                    
-
-                    switch (answer)
-                    {
-                        case 1:
-
-                            pomoLib.DisplayList();
-                            break;
-                        case 2:
-
-                            
-                            bool subMenu = true;
-                            while (subMenu == true)
+                        bool subMenu = true;
+                        while (subMenu == true)
+                        {
+                            try
                             {
-                                try
+
+                                Console.Write("\nPresets:\n1.[Städa]\n2.[Träna]\n3.[Studera]\n4.[Annat]\n5.[Tillbaka till huvudmenyn]");
+                                int choice = Int32.Parse(Console.ReadLine());
+
+                                switch (choice)
                                 {
 
-                                    Console.Write("\nPresets:\n1.[Städa]\n2.[Träna]\n3.[Studera]\n4.[Annat]\n5.[Tillbaka till huvudmenyn]");
-                                    int choice = Int32.Parse(Console.ReadLine());
+                                    case 1:
 
-                                    switch (choice)
-                                    {
+                                        item.Title = "Städa";
+                                        task.Add(item);
+                                        subMenu = false;
+                                        break;
 
-                                        case 1:
-                                            TaskItem.item = "Städa";
-                                            pomolib.AddToDoList(TaskItem.item);
-                                            subMenu = false;
-                                            break;
+                                    case 2:
+                                        item.Title = "Träna";
+                                        task.Add(item);
+                                        subMenu = false;
+                                        break;
 
-                                        case 2:
-                                            TaskItem.item = "Träna";
-                                            pomolib.AddToDoList(TaskItem.item);
-                                            subMenu = false;
-                                            break;
+                                    case 3:
+                                        item.Title = "Studera";
+                                        task.Add(item);
+                                        subMenu = false;
+                                        break;
 
-                                        case 3:
-                                            toDoObject.item = "Studera";
-                                            pomolib.AddToDoList(TaskItem.item);
-                                            subMenu = false;
-                                            break;
+                                    case 4:
+                                        task.NewTaskItem();
+                                        subMenu = false;
+                                        break;
+                                    case 5:
+                                        subMenu = false;
+                                        break;
+                                    default:
+                                        Console.WriteLine("Mata in giltligt alternativ!");
+                                        break;
 
-                                        case 4:
-                                            Console.Write("-----------------\nSkriv in aktivitet: ");
-                                            toDo = Console.ReadLine();
-                                            pomolib.AddToDoList(toDo);
-                                            subMenu = false;
-                                            break;
-                                        case 5:
-                                            subMenu = false;
-                                            break;
-
-
-                                    }
-
-                                }
-                                catch
-                                {
-                                    Console.WriteLine("Du måste skriva in någon av siffrorna.");
-                                    Console.ReadKey();
-                                    Console.Clear();
                                 }
 
                             }
-
-
-                            break;
-                        case 3:
-
-
-                            if (pomoLib.antaliindexilistan == 0)
+                            catch
                             {
-                                Console.Clear();
-                                Console.WriteLine("Det finns inget inskrivet i listan.");
+                                Console.WriteLine("Du måste skriva in någon av siffrorna.");
                                 Console.ReadKey();
-
-                            }
-                            else
-                            {
-                                pomoLib.RemoveTaskItem(); //Skickas till removetaskitem metoden
-
-                            }
-
-                            menu = false;
-
-                            break;
-                        case 4:         /*-----------------------SKALL BÖRJA EDITA HÄR--------------------------*/
-
-                            if (Pomodoro.ToDoList.Count != 0)
-                            {
-                                Pomodoro.PrintToDoList();
-                                Console.Write("Skriv in vilken aktivitet som är avklarad: ");
-                                int index = Int32.Parse(Console.ReadLine());
-
-                                Pomodoro.AddToFinished(index);
-
-                            }
-                            else
-                            {
                                 Console.Clear();
-                                Console.Write("Finns inga inskrivna aktiviteter.");
-                                Console.ReadKey();
                             }
 
+                        }
+                        break;
+                    case 3:
 
-                            break;
-                        case 5:
 
-                            Pomodoro.ShowHistoryList();
+                        if (task.Count < 1)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Det finns inget inskrivet i listan.");
+                            Console.ReadKey();
 
-                            break;
+                        }
+                        else
+                        {
+                            task.RemoveTaskItem(); //Skickas till removetaskitem metoden
+                            MainMenu();
 
-                        case 6:
+                        }
 
-                            menu = false;
+                        menu = false;
 
-                            break;
-                    }
+                        break;
+                    case 4:         /*-----------------------SKALL BÖRJA EDITA HÄR--------------------------*/
 
-                }
-                catch
-                {
+                        if (item.NumberOfTasks != 0)
+                        {
+                            task.DisplayList();
+                            Console.Write("Skriv in nummer för vilken aktivitet som är avklarad: ");
+                            int index = Int32.Parse(Console.ReadLine());
 
-                    Console.WriteLine("----------------\nDu måste skriva in någon av siffrorna i menyn.");
-                    Console.ReadKey();
+                            //.AddToFinished(index);
 
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.Write("Finns inga inskrivna aktiviteter.");
+                            Console.ReadKey();
+                        }
+
+
+                        break;
+                    case 5:
+
+                        //SKRIV UT FÄRDIGA TODOS
+
+                        break;
+
+                    case 6:
+
+                        menu = false;
+
+                        break;
                 }
 
 
-
-
-            }      
-   
-    }   
+            }
+        }
+    }
+}
