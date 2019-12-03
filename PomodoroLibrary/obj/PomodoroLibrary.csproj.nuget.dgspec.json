@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/PomodoroLibrary.csproj": {}
+    "C:\\Users\\admin\\PomoV1204987\\PomodoroLibrary\\PomodoroLibrary.csproj": {}
   },
   "projects": {
-    "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/PomodoroLibrary.csproj": {
+    "C:\\Users\\admin\\PomoV1204987\\PomodoroLibrary\\PomodoroLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/PomodoroLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\PomoV1204987\\PomodoroLibrary\\PomodoroLibrary.csproj",
         "projectName": "PomodoroLibrary",
-        "projectPath": "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/PomodoroLibrary.csproj",
-        "packagesPath": "/Users/produktion/.nuget/packages/",
-        "outputPath": "/Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/",
+        "projectPath": "C:\\Users\\admin\\PomoV1204987\\PomodoroLibrary\\PomodoroLibrary.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\PomoV1204987\\PomodoroLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "/Users/produktion/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
