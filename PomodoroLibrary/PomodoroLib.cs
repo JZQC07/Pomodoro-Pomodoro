@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 namespace PomodoroLibrary
 {
-    //TODO: History over finished activities
+    //TODO: Print history over finished activities
     //TODO: I MENY KUNNA VÄLJA AKTIVITET ATT STARTA.
     //TODO: TIMER SKALL SÄTTAS FÖR DEN SPECIFIKA AKTIVITETEN.
     //TODO: TIMER SKALL STARTAS OCH STOPPAS. NÄR SLUT, TAS TILLBAKA TILL HUVUDMENYN.
-    //TODO: Aktiviteten skall raderas och läggas till i historiklistan.
     //TODO; OKRASCHBART
 
 
@@ -99,7 +98,10 @@ namespace PomodoroLibrary
             int removeChoice = Int32.Parse(Console.ReadLine());
             this.RemoveAt(removeChoice);
         }
-    }
+        public void StartTask()
+        {
+            Console.WriteLine("Du startade timern för {0}", this);
+        }
 
     /*-----------------------------------------------STACK OVERFLOW-------------------------------------------*/
 
@@ -205,4 +207,6 @@ namespace PomodoroLibrary
             }
         }
     }
+}
+
 }
