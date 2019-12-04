@@ -125,7 +125,7 @@ namespace Pomodoro_Project
             break;
           case 4:         /*-----------------------SKALL BÖRJA EDITA HÄR--------------------------*/
 
-            if (item.NumberOfTasks < 0)
+            if (item.NumberOfTasks < 1)
             {
               task.DisplayList();
               bool work = false;

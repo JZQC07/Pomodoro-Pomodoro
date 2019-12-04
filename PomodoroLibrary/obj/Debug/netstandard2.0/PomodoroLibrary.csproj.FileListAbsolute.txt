@@ -7,3 +7,11 @@
 /Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/bin/Debug/netstandard2.0/PomodoroLibrary.pdb
 /Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/Debug/netstandard2.0/PomodoroLibrary.dll
 /Users/produktion/Desktop/hello-world/Pomodoro/PomodoroLibrary/obj/Debug/netstandard2.0/PomodoroLibrary.pdb
+c:\Users\Jonatan\Desktop\Hello World\Pomodoro-Pomodoro\PomodoroLibrary\bin\Debug\netstandard2.0\PomodoroLibrary.deps.json
+c:\Users\Jonatan\Desktop\Hello World\Pomodoro-Pomodoro\PomodoroLibrary\bin\Debug\netstandard2.0\PomodoroLibrary.dll
+c:\Users\Jonatan\Desktop\Hello World\Pomodoro-Pomodoro\PomodoroLibrary\bin\Debug\netstandard2.0\PomodoroLibrary.pdb
+c:\Users\Jonatan\Desktop\Hello World\Pomodoro-Pomodoro\PomodoroLibrary\obj\Debug\netstandard2.0\PomodoroLibrary.csprojAssemblyReference.cache
+c:\Users\Jonatan\Desktop\Hello World\Pomodoro-Pomodoro\PomodoroLibrary\obj\Debug\netstandard2.0\PomodoroLibrary.AssemblyInfoInputs.cache
+c:\Users\Jonatan\Desktop\Hello World\Pomodoro-Pomodoro\PomodoroLibrary\obj\Debug\netstandard2.0\PomodoroLibrary.AssemblyInfo.cs
+c:\Users\Jonatan\Desktop\Hello World\Pomodoro-Pomodoro\PomodoroLibrary\obj\Debug\netstandard2.0\PomodoroLibrary.dll
+c:\Users\Jonatan\Desktop\Hello World\Pomodoro-Pomodoro\PomodoroLibrary\obj\Debug\netstandard2.0\PomodoroLibrary.pdb
