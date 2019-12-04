@@ -9,276 +9,320 @@ using System.Timers;
 namespace Pomodoro_Project
 {
 
-  class ToDoList
-  {
-    static void Main(string[] args)
+    class ToDoList
     {
-      Menu myMenu = new Menu();
-      myMenu.MainMenu();
-    }
-  }
-  class Menu
-  {
-    TaskList task = new TaskList();
-    TaskItem item = new TaskItem();
-    TaskList HistoryList = new TaskList();
-    PomodoroLibrary.PomodoroTimer timer;
-
-    public void MainMenu()
-    {
-      bool menu = true;
-
-      while (menu == true)
-      {
-        Console.WriteLine("***POMODORO***\n\n1.[Show ToDo-list]\n2.[Add to ToDo-list]\n3.[Remove from ToDo-list]\n4.[Add to finished activity]\n5.[Show finsihed activities]\n6.[Start activity]\n7.[Exit]");
-        int answer = Int32.Parse(Console.ReadLine());
-
-        switch (answer)
+        static void Main(string[] args)
         {
-          case 1:
-            if (task.Count < 1)
-            {
-              Console.WriteLine("Finns inget i listan!");
-            }
-            else
-            {
-              Console.Clear();
-              task.DisplayList();
-            }
-
-            break;
-          case 2:
-
-            bool subMenu = true;
-            while (subMenu == true)
-            {
-              try
-              {
-
-                Console.Write("\nPresets:\n1.[Clean]\n2.[Train]\n3.[Study]\n4.[Other]\n5.[Back to main menu]");
-                int choice = Int32.Parse(Console.ReadLine());
-
-                switch (choice)
-                {
-
-                  case 1:
-
-                    item.Title = "Clean";
-                    task.Add(item);
-                    subMenu = false;
-                    break;
-
-                  case 2:
-                    item.Title = "Workout";
-                    task.Add(item);
-                    subMenu = false;
-                    break;
-
-                  case 3:
-                    item.Title = "Study";
-                    task.Add(item);
-                    subMenu = false;
-                    break;
-
-                  case 4:
-                    task.NewTaskItem();
-                    subMenu = false;
-                    break;
-                  case 5:
-                    subMenu = false;
-                    break;
-                  case 6:
-
-                    break;
-                  default:
-                    Console.WriteLine("Please enter the correct alternative!");
-                    break;
-                }
-              }
-              catch
-              {
-                Console.WriteLine("You have to enter a valid number");
-                Console.ReadKey();
-                Console.Clear();
-              }
-
-            }
-            break;
-          case 3:
-
-            if (task.Count < 1)
-            {
-              Console.Clear();
-              Console.WriteLine("The list contains no values");
-              Console.ReadKey();
-
-            }
-            else
-            {
-              task.RemoveTaskItem(); //Skickas till removetaskitem metoden
-              MainMenu();
-
-            }
-
-            menu = false;
-
-            break;
-          case 4:         /*-----------------------SKALL BÖRJA EDITA HÄR--------------------------*/
-
-            if (item.NumberOfTasks < 1)
-            {
-              task.DisplayList();
-              bool work = false;
-              int index = 0;
-              do
-              {
-                try
-                {
-                  Console.Write("Enter the number you would mark as finished: ");
-                  index = Int32.Parse(Console.ReadLine());
-                }
-                catch (System.Exception)
-                {
-
-                  Console.WriteLine("Enter a valid number!");
-                  work = true;
-
-                }
-
-                HistoryList.Add(task[index]);
-                task.RemoveAt(index);
-              }
-              while (work == true);
-            }
-            else
-            {
-              Console.Clear();
-              Console.Write("There are no activities to be shown");
-              Console.ReadKey();
-            }
-
-            break;
-          case 5:
-            Console.Clear();
-            HistoryList.DisplayList();
-            Console.ReadKey();
-
-            break;
-
-          case 6:
-
-            if (item.NumberOfTasks < 1)
-            {
-              task.DisplayList();
-              bool work = false;
-              int index = 0;
-              do
-              {
-                try
-                {
-                  Console.Write("Enter the number you would like to start: ");
-                  index = Int32.Parse(Console.ReadLine());
-                }
-                catch (System.Exception)
-                {
-
-                  Console.WriteLine("Enter a valid value!");
-                  work = true;
-
-                }
-              }
-              while (work == true);
-            }
-            else
-            {
-              Console.Clear();
-              Console.Write("Finns inga inskrivna aktiviteter.");
-              Console.ReadKey();
-            }
-
-            Console.WriteLine("Would you like to add a timer to your task? [Y/N]");
-            string usingTimer = Console.ReadLine().ToUpper();
-
-            if (usingTimer == "Y")
-            {
-              //Sätter värdet på timern
-              int setTaskMinutes = 0;
-              int setTaskSeconds = 0;
-              int setBreakMinutes = 0;
-              int setBreakSeconds = 0;
-              Console.WriteLine("Hur många minuter vill du fokusera på din aktivitet(Min 0 minuter max 30)?");
-              setTaskMinutes = int.Parse(Console.ReadLine());
-              //Ifsatser kontrollerar att värdet är ok
-              if (setTaskMinutes < 0 || setTaskMinutes > 30)
-              {
-                setTaskMinutes = 0;
-                Console.WriteLine("Felaktigt värde, värdet sätts till 0");
-
-              }
-              Console.WriteLine("Hur många sekunder vill du fokusera på din aktivitet?");
-              setTaskSeconds = int.Parse(Console.ReadLine());
-              if (setTaskSeconds < 0 || setTaskSeconds > 60)
-              {
-                setTaskSeconds = 0;
-                Console.WriteLine("Felaktigt värde, värdet sätts till 0");
-
-              }
-              Console.WriteLine("Hur många minuter vill du sätta din rast till?(Min 0 minuter max 30)");
-              setBreakMinutes = int.Parse(Console.ReadLine());
-              if (setBreakMinutes < 0 || setBreakMinutes > 30)
-              {
-                setBreakMinutes = 0;
-                Console.WriteLine("Felaktigt värde, värdet sätts till 0");
-
-              }
-              Console.WriteLine("Hur många sekunder vill du sätta din rast till?");
-              setBreakSeconds = int.Parse(Console.ReadLine());
-              if (setBreakSeconds < 0 || setBreakSeconds > 60)
-              {
-                setBreakSeconds = 0;
-                Console.WriteLine("Felaktigt värde, värdet sätts till 0");
-              }
-              Console.Clear();
-              Console.WriteLine("Press any button to start your task");
-              Console.ReadLine();
-              //Skapar ett nytt objet av timerklassen Pomodoro samt anropar de metoder som krävs för att köra timern
-              timer = new PomodoroLibrary.PomodoroTimer(setTaskMinutes, setTaskSeconds, setBreakMinutes, setBreakSeconds);
-              //Två delegates som refereras från respektive start/break timer till metoden PrintTimer
-              timer.addDelegateToFocus = PrintTimer;
-              timer.addDelegateToBreak = PrintTimer;
-              timer.StartTaskTimer();
-              Console.WriteLine("Timer starts now");
-              Console.ReadLine();
-              timer.StartBreakTimer();
-              Console.ReadLine();
-              //Åter till huvudmenyn
-              MainMenu();
-
-            }
-            else
-            {
-              menu = false;
-            }
-
-            break;
-
-          case 7:
-
-            menu = false;
-            break;
+            Menu myMenu = new Menu();
+            myMenu.MainMenu();
         }
-      }
     }
-
-    public void PrintTimer(int TaskMinutes, int TaskSeconds)
+    class Menu
     {
-      Console.Clear();
-      Console.WriteLine(TaskMinutes.ToString("00:") + TaskSeconds.ToString("00"));
-      if (TaskMinutes <= 0 && TaskSeconds <= 0)
-      {
-        Console.Beep();
-        Console.WriteLine("Du har utfört uppgiften! Tryck på valfri tangent för att fortsätta..");
-      }
+        TaskList task = new TaskList();
+        TaskItem item = new TaskItem();
+        TaskList HistoryList = new TaskList();
+        PomodoroLibrary.PomodoroTimer timer;
+
+        public void MainMenu()
+        {
+            bool menu = true;
+
+            while (menu == true)
+            {
+                Console.WriteLine("***POMODORO***\n\n1.[Show ToDo-list]\n2.[Add to ToDo-list]\n3.[Remove from ToDo-list]\n4.[Add to finished activity]\n5.[Show finsihed activities]\n6.[Start activity]\n7.[Exit]");
+                string stringAnswer = Console.ReadLine();
+                int intAnswer;
+                if (int.TryParse(stringAnswer, out intAnswer)) //Kollar så att användaren skrivit in giltligt nummer.
+                {
+                    switch (intAnswer)
+                    {
+                        case 1:
+                            if (task.Count < 1)
+                            {
+                                Console.WriteLine("There is nothing in your list!");
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                task.DisplayList();
+                            }
+
+                            break;
+                        case 2:
+
+                            bool subMenu = true;
+                            while (subMenu == true)
+                            {
+                                try
+                                {
+
+                                    Console.Write("\nPresets:\n1.[Clean]\n2.[Workout]\n3.[Study]\n4.[Other]\n5.[Back to main menu]");
+                                    int choice = Int32.Parse(Console.ReadLine());
+
+                                    switch (choice)
+                                    {
+
+                                        case 1:
+
+                                            item.Title = "Clean";
+                                            task.Add(item);
+                                            subMenu = false;
+                                            break;
+
+                                        case 2:
+                                            item.Title = "Workout";
+                                            task.Add(item);
+                                            subMenu = false;
+                                            break;
+
+                                        case 3:
+                                            item.Title = "Study";
+                                            task.Add(item);
+                                            subMenu = false;
+                                            break;
+
+                                        case 4:
+                                            task.NewTaskItem();
+                                            subMenu = false;
+                                            break;
+                                        case 5:
+                                            subMenu = false;
+                                            break;
+                                        case 6:
+
+                                            break;
+                                        default:
+                                            Console.WriteLine("Please enter the correct alternative!");
+                                            break;
+                                    }
+                                }
+                                catch
+                                {
+                                    Console.WriteLine("You have to enter a valid number");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+
+                            }
+                            break;
+                        case 3:
+
+                            if (task.Count < 1)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("The list contains no values. Press a key to return to Main Menu.");
+                                Console.ReadKey();
+                                MainMenu();
+
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    task.RemoveTaskItem(); //Skickas till removetaskitem metoden
+                                    MainMenu();
+
+                                }
+                                catch
+                                {
+                                    Console.WriteLine("Choose a correct number for the activity you would like to remove.");
+                                    Console.WriteLine("Press any key to return to Main Menu.");
+                                    Console.ReadKey();
+                                    MainMenu();
+                                }
+                            }
+
+                            menu = false;
+
+                            break;
+                        case 4:        
+
+                            if (task.Count > 0)
+                            {
+                                task.DisplayList();
+                                bool work = false;
+                                int index = 0;
+                                do
+                                {
+                                    try
+                                    {
+                                        Console.Write("Enter the number you would like to mark as finished: ");
+                                        index = Int32.Parse(Console.ReadLine());
+                                    }
+                                    catch (System.Exception)
+                                    {
+
+                                        Console.WriteLine("Enter a valid number!");
+                                        work = true;
+
+                                    }
+
+                                    HistoryList.Add(task[index]);
+                                    task.RemoveAt(index);
+                                }
+                                while (work == true);
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.Write("There are no activities to be shown. Press any key to return to Main Menu.");
+                                Console.ReadKey();
+                                MainMenu();
+                            }
+
+                            break;
+                        case 5:
+                            Console.Clear();
+                            if (task.Count > 0)
+                            {
+                                HistoryList.DisplayList();
+                                Console.ReadKey();
+                            }
+                            else
+                            {
+                                Console.WriteLine("There are no activities in your list. Press any key to return to Main Menu.");
+                                Console.ReadKey();
+                                MainMenu();
+                            }
+
+
+                            break;
+
+                        case 6:
+
+                            if (task.Count > 0)
+                            {
+                                task.DisplayList();
+                                bool work = false;
+                                int index = 0;
+                                do
+                                {
+                                    try
+                                    {
+                                        Console.Write("Enter the number you would like to start: ");
+                                        index = Int32.Parse(Console.ReadLine());
+                                    }
+                                    catch (System.Exception)
+                                    {
+
+                                        Console.WriteLine("Enter a valid value!");
+                                        work = true;
+
+                                    }
+                                }
+                                while (work == true);
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.Write("There are no activities in your list. Please add an activity before starting it.");
+                                Console.ReadKey();
+                                MainMenu();
+                            }
+
+                            try
+                            {
+                                Console.WriteLine("Would you like to add a timer to your task? [Y/N]");
+                                string usingTimer = Console.ReadLine().ToUpper();
+
+                                if (usingTimer == "Y")
+                                {
+                                    //Sätter värdet på timern
+                                    int setTaskMinutes = 0;
+                                    int setTaskSeconds = 0;
+                                    int setBreakMinutes = 0;
+                                    int setBreakSeconds = 0;
+                                    Console.WriteLine("How many minutes do you want to focus on your activity?(Min 0, max 30)"); //
+                                    setTaskMinutes = int.Parse(Console.ReadLine());
+                                    //Ifsatser kontrollerar att värdet är ok
+                                    if (setTaskMinutes < 0 || setTaskMinutes > 30)
+                                    {
+                                        setTaskMinutes = 0;
+                                        Console.WriteLine("Wrong value! Minutes set to [0].");
+
+                                    }
+                                    Console.WriteLine("How many seconds do you want to focus on your activity?");
+                                    setTaskSeconds = int.Parse(Console.ReadLine());
+                                    if (setTaskSeconds < 0 || setTaskSeconds > 60)
+                                    {
+                                        setTaskSeconds = 0;
+                                        Console.WriteLine("Wrong value! Seconds set to [0].");
+
+                                    }
+                                    Console.WriteLine("How many minutes do you want your brake to be?(Min 0, max 30");
+                                    setBreakMinutes = int.Parse(Console.ReadLine());
+                                    if (setBreakMinutes < 0 || setBreakMinutes > 30)
+                                    {
+                                        setBreakMinutes = 0;
+                                        Console.WriteLine("Wrong value! Minutes set to [0].");
+
+                                    }
+                                    Console.WriteLine("How many seconds do you want your brake to be?(Min 0, max 30");
+                                    setBreakSeconds = int.Parse(Console.ReadLine());
+                                    if (setBreakSeconds < 0 || setBreakSeconds > 60)
+                                    {
+                                        setBreakSeconds = 0;
+                                        Console.WriteLine("Wrong value! Seconds set to [0].");
+                                    }
+                                    Console.Clear();
+                                    Console.WriteLine("Press any button to start your task");
+                                    Console.ReadLine();
+                                    //Skapar ett nytt objet av timerklassen Pomodoro samt anropar de metoder som krävs för att köra timern
+                                    timer = new PomodoroLibrary.PomodoroTimer(setTaskMinutes, setTaskSeconds, setBreakMinutes, setBreakSeconds);
+                                    //Två delegates som refereras från respektive start/break timer till metoden PrintTimer
+                                    timer.addDelegateToFocus = PrintTimer;
+                                    timer.addDelegateToBreak = PrintTimer;
+                                    timer.StartTaskTimer();
+                                    Console.WriteLine("Timer starts now! At any time enter [Q] to return to Main Menu.");
+                                    Console.WriteLine("Or anything else to start your brake!");
+                                    string cancel = Console.ReadLine().ToUpper();
+                                    if(cancel == "Q")
+                                    {
+                                      MainMenu();
+                                    }
+                                    timer.StartBreakTimer();
+                                    Console.WriteLine("Congratulations! You have finished your task!");
+                                    Console.WriteLine("Press any key to return to Main Menu.");
+                                    Console.ReadLine();
+                                    MainMenu();
+                                    //Åter till huvudmenyn
+                                }
+                                else
+                                {
+                                Console.WriteLine("You didnt set a timer. Press any key to return to Main Menu.");
+                                Console.ReadKey();
+                                }
+
+                            }
+                            catch
+                            {
+                                Console.WriteLine("Enter a correct number! Try again!");
+                            }
+                            break;
+
+                        case 7:
+
+                            menu = false;
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Choose a correct alternative! [1-7]");
+                }
+            }
+        }
+
+        public void PrintTimer(int TaskMinutes, int TaskSeconds)
+        {
+            Console.Clear();
+            Console.WriteLine(TaskMinutes.ToString("00:") + TaskSeconds.ToString("00"));
+            if (TaskMinutes <= 0 && TaskSeconds <= 0)
+            {
+                Console.Beep();
+                Console.WriteLine("Congratulations! You have now completed your task!");
+            }
+        }
     }
-  }
 }

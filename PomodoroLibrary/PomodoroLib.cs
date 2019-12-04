@@ -4,22 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 namespace PomodoroLibrary
 {
-    //TODO: Print history over finished activities
-    //TODO: I MENY KUNNA VÄLJA AKTIVITET ATT STARTA.
-    //TODO: TIMER SKALL SÄTTAS FÖR DEN SPECIFIKA AKTIVITETEN.
-    //TODO: TIMER SKALL STARTAS OCH STOPPAS. NÄR SLUT, TAS TILLBAKA TILL HUVUDMENYN.
-    //TODO; OKRASCHBART
-
-
-    /*-----------------------------------Stack Overflow------------------------------------*/
-
     public class TaskItem
     {
         public int Number { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsCompleted { get; set; }
-        public int NumberOfTasks {get; set;}
+        public int NumberOfTasks { get; set; }
 
         public TaskItem()
         {
@@ -53,10 +44,10 @@ namespace PomodoroLibrary
 
         public void Add(string title, string desc)
         {
-            
+
             int NumberOfTasks = this.Count();
             int number = NumberOfTasks++;
-            
+
 
             this.Add(new TaskItem(number, title, desc));
         }
@@ -103,9 +94,8 @@ namespace PomodoroLibrary
             Console.WriteLine("Du startade timern för {0}", this);
         }
 
-    /*-----------------------------------------------STACK OVERFLOW-------------------------------------------*/
 
-    //Kunna anropa metoden från TodoList.cs
+        //Kunna anropa metoden från TodoList.cs
     }
 
     /// <summary>
@@ -178,6 +168,7 @@ namespace PomodoroLibrary
             breakTimer = new Timer(1000);
             breakTimer.Elapsed += BreakEvent;
             breakTimer.Start();
+            Console.ReadLine();
         }
 
         //Stops break timer
@@ -189,7 +180,7 @@ namespace PomodoroLibrary
         //Method that is raised each time breaktimer elapses
         private void BreakEvent(object sender, EventArgs e)
         {
-            
+
             addDelegateToBreak.Invoke(this.setBreakMinutes, this.setBreakSeconds);
 
 
