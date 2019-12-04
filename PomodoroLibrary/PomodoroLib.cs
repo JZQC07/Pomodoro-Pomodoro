@@ -74,13 +74,21 @@ namespace PomodoroLibrary
 
             Console.Write("Enter new task Title: ");
             title = Console.ReadLine().Trim();
-            Console.WriteLine("{0}\n", title);
+            if(title == "")
+            {
+                Console.WriteLine("Please enter something...");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("{0}\n", title);
 
-            Console.Write("Enter new task Description: ");
-            desc = Console.ReadLine();
-            Console.WriteLine("\"{0}\"", desc);
+                Console.Write("Enter new task Description: ");
+                desc = Console.ReadLine();
+                Console.WriteLine("\"{0}\"", desc);
 
-            this.Add(title, desc);
+                this.Add(title, desc);
+            }
         }
         public void RemoveTaskItem()
         {
