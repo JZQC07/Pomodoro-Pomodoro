@@ -174,7 +174,7 @@ namespace Pomodoro_Project
                             break;
                         case 5:
                             Console.Clear();
-                            if (task.Count > 0)
+                            if (HistoryList.Count > 0)
                             {
                                 HistoryList.DisplayList();
                                 Console.ReadKey();
