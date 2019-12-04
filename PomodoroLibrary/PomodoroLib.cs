@@ -66,7 +66,6 @@ namespace PomodoroLibrary
                                                      );
             }
         }
-
         public void NewTaskItem()
         {
             string title = String.Empty;
