@@ -45,7 +45,7 @@ namespace PomodoroLibrary
         public void Add(string title, string desc)
         {
 
-            int NumberOfTasks = this.Count();
+            int NumberOfTasks = this.Count()+1;
             int number = NumberOfTasks++;
 
 
@@ -90,20 +90,18 @@ namespace PomodoroLibrary
                 this.Add(title, desc);
             }
         }
+        public void NewTaskItem (TaskItem task)
+        {
+            this.Add(task.Title, task.Description);
+        }
         public void RemoveTaskItem()
         {
             Console.WriteLine("Mata in nummer för vilken task du vill ta bort från din lista: ");
             DisplayList();
             int removeChoice = Int32.Parse(Console.ReadLine());
-            this.RemoveAt(removeChoice);
-        }
-        public void StartTask()
-        {
-            Console.WriteLine("Du startade timern för {0}", this);
+            this.RemoveAt(removeChoice-1);
         }
 
-
-        //Kunna anropa metoden från TodoList.cs
     }
 
     /// <summary>

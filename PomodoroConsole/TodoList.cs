@@ -56,29 +56,28 @@ namespace Pomodoro_Project
                             {
                                 try
                                 {
-
                                     Console.Write("\nPresets:\n1.[Clean]\n2.[Workout]\n3.[Study]\n4.[Other]\n5.[Back to main menu]");
                                     int choice = Int32.Parse(Console.ReadLine());
+                                    TaskItem newItem = new TaskItem();
 
                                     switch (choice)
                                     {
 
                                         case 1:
-
-                                            item.Title = "Clean";
-                                            task.Add(item);
+                                            newItem.Title = "Clean";
+                                            task.NewTaskItem(newItem);
                                             subMenu = false;
                                             break;
 
                                         case 2:
-                                            item.Title = "Workout";
-                                            task.Add(item);
+                                            newItem.Title = "Workout";
+                                            task.NewTaskItem(newItem);
                                             subMenu = false;
                                             break;
 
                                         case 3:
-                                            item.Title = "Study";
-                                            task.Add(item);
+                                            newItem.Title = "Study";
+                                            task.NewTaskItem(newItem);
                                             subMenu = false;
                                             break;
 
