@@ -147,7 +147,7 @@ namespace Pomodoro_Project
                                 {
                                     try
                                     {
-                                        Console.Write("Enter the number you would like to mark as finished: ");
+                                        Console.WriteLine("Enter the number you would like to mark as finished: ");
                                         index = Int32.Parse(Console.ReadLine());
                                     }
                                     catch (System.Exception)
@@ -166,7 +166,8 @@ namespace Pomodoro_Project
                             else
                             {
                                 Console.Clear();
-                                Console.Write("There are no activities to be shown. Press any key to return to Main Menu.");
+                                Console.Write("There are no activities to be shown.");
+                                Console.WriteLine("Press any key to return to the Main Menu");
                                 Console.ReadKey();
                                 MainMenu();
                             }
@@ -181,7 +182,8 @@ namespace Pomodoro_Project
                             }
                             else
                             {
-                                Console.WriteLine("There are no activities in your list. Press any key to return to Main Menu.");
+                                Console.Write("There are no activities to be shown.");
+                                Console.WriteLine("Press any key to return to the Main Menu");;
                                 Console.ReadKey();
                                 MainMenu();
                             }
