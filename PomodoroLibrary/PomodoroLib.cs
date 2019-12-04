@@ -67,7 +67,7 @@ namespace PomodoroLibrary
             Console.WriteLine();
             Console.WriteLine("Num |  Title  | Description  |");
             Console.WriteLine("------------------------------");
-            foreach (var t in this)
+            foreach (TaskItem t in this)
             {
                 Console.WriteLine("{0}       {1}\t{2}", t.Number.ToString(),
                                                      t.Title,
@@ -106,20 +106,20 @@ namespace PomodoroLibrary
     /*-----------------------------------------------STACK OVERFLOW-------------------------------------------*/
 
     //Kunna anropa metoden från TodoList.cs
-
+    }
 
     /// <summary>
     /// Timer Class
     /// </summary>
-    public class Pomodoro
+    public class PomodoroTimer
     {
         ///Adds delegate to refer to methods 
-        public delegate void focusEventDelegate(int focusMinutes, int focusSeconds);
-        public delegate void breakEventDelegate(int breakMinutes, int breakSeconds);
+        public delegate void FocusEventDelegate(int focusMinutes, int focusSeconds);
+        public delegate void BreakEventDelegate(int breakMinutes, int breakSeconds);
 
         // Create an objet for delegate
-        public focusEventDelegate onFocus;
-        public breakEventDelegate onBreak;
+        public FocusEventDelegate addDelegateToFocus;
+        public BreakEventDelegate addDelegateToBreak;
 
         //Creates timer objects
         Timer taskTimer;
@@ -132,7 +132,7 @@ namespace PomodoroLibrary
         private int setBreakSeconds { get; set; }
 
         // Constructor with in-parameters
-        public Pomodoro(int setTaskMinutes, int setTaskSeconds, int setBreakMinutes, int setBreakSeconds)
+        public PomodoroTimer(int setTaskMinutes, int setTaskSeconds, int setBreakMinutes, int setBreakSeconds)
         {
             this.setTaskMinutes = setTaskMinutes;
             this.setTaskSeconds = setTaskSeconds;
@@ -141,28 +141,27 @@ namespace PomodoroLibrary
         }
 
         //Method that starts tasktimer, set to 1 sec for each elapse
-        public void startTaskTimer()
+        public void StartTaskTimer()
         {
             taskTimer = new Timer(1000);
-            taskTimer.Elapsed += taskEvent;
+            taskTimer.Elapsed += TaskEvent;
             taskTimer.Start();
         }
 
         //Stops tasktimer
-        public void stopTaskTimer()
+        public void StopTaskTimer()
         {
             taskTimer.Stop();
         }
 
         //Method that is raised each time tasktimer elapses
-        private void taskEvent(object sender, EventArgs e)
+        private void TaskEvent(object sender, EventArgs e)
         {
-            Console.Clear();
-            onFocus.Invoke(this.setTaskMinutes, this.setTaskSeconds);
+            addDelegateToFocus.Invoke(this.setTaskMinutes, this.setTaskSeconds);
 
             if (this.setTaskMinutes <= 0 && this.setTaskSeconds <= 0)
             {
-                stopTaskTimer();
+                StopTaskTimer();
             }
 
             this.setTaskSeconds--;
@@ -174,29 +173,29 @@ namespace PomodoroLibrary
         }
 
         //Method that starts breaktimer, set to 1 sec for each elapse
-        public void startBreakTimer()
+        public void StartBreakTimer()
         {
             breakTimer = new Timer(1000);
-            breakTimer.Elapsed += breakEvent;
+            breakTimer.Elapsed += BreakEvent;
             breakTimer.Start();
         }
 
         //Stops break timer
-        public void stopBreakTimer()
+        public void StopBreakTimer()
         {
             breakTimer.Stop();
         }
 
         //Method that is raised each time breaktimer elapses
-        private void breakEvent(object sender, EventArgs e)
+        private void BreakEvent(object sender, EventArgs e)
         {
-            Console.Clear();
-            onBreak.Invoke(this.setBreakMinutes, this.setBreakSeconds);
+            
+            addDelegateToBreak.Invoke(this.setBreakMinutes, this.setBreakSeconds);
 
 
             if (this.setBreakMinutes <= 0 && this.setBreakSeconds <= 0)
             {
-                stopBreakTimer();
+                StopBreakTimer();
             }
 
             this.setBreakSeconds--;
@@ -209,4 +208,4 @@ namespace PomodoroLibrary
     }
 }
 
-}
+
