@@ -2,6 +2,7 @@
 using System.Timers;
 using System.Collections.Generic;
 using System.Linq;
+using PomodoroLibrary;
 namespace PomodoroLibrary
 {
     public class TaskItem
@@ -41,17 +42,14 @@ namespace PomodoroLibrary
         {
 
         }
-
         public void Add(string title, string desc)
         {
+            int NumberOfTasks = this.Count();
+            int number = NumberOfTasks++;   //När läggs till i historiklistan måste de få HistoryList.Count som nummer        
 
-            int NumberOfTasks = this.Count()+1;
-            int number = NumberOfTasks++;
-
-
+            /*------------------------------------------*/
             this.Add(new TaskItem(number, title, desc));
         }
-
         public void DisplayList()
         {
             Console.WriteLine("\t Task List");
@@ -73,7 +71,7 @@ namespace PomodoroLibrary
 
             Console.Write("Enter new task Title: ");
             title = Console.ReadLine().Trim();
-            if(title == "")
+            if (title == "")
             {
                 Console.WriteLine("Please enter something...");
                 Console.ReadKey();
@@ -89,7 +87,7 @@ namespace PomodoroLibrary
                 this.Add(title, desc);
             }
         }
-        public void NewTaskItem (TaskItem task)
+        public void NewTaskItem(TaskItem task)
         {
             this.Add(task.Title, task.Description);
         }
@@ -98,9 +96,18 @@ namespace PomodoroLibrary
             Console.WriteLine("Mata in nummer för vilken task du vill ta bort från din lista: ");
             DisplayList();
             int removeChoice = Int32.Parse(Console.ReadLine());
-            this.RemoveAt(removeChoice-1);
+            this.RemoveAt(removeChoice);
         }
+        public void AddToHistory(int index, TaskList HistoryList, TaskList task)
+        {
+            int HistoryNumber = HistoryList.Count();
+            int number = HistoryNumber++;   //När läggs till i historiklistan måste de få HistoryList.Count som nummer     
+            string title = task[index].Title;
+            string desc = task[index].Description;     
 
+            /*------------------------------------------*/
+            HistoryList.Add(new TaskItem(number, title, desc));
+        }
     }
 
     /// <summary>

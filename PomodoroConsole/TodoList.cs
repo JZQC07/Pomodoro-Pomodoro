@@ -23,6 +23,7 @@ namespace Pomodoro_Project
         TaskItem item = new TaskItem();
         TaskList HistoryList = new TaskList();
         PomodoroLibrary.PomodoroTimer timer;
+        public bool mainList = true;
 
         public void MainMenu()
         {
@@ -71,7 +72,7 @@ namespace Pomodoro_Project
 
                                         case 2:
                                             newItem.Title = "Workout";
-                                            task.NewTaskItem(newItem); //Hej
+                                            task.NewTaskItem(newItem);
                                             subMenu = false;
                                             break;
 
@@ -88,9 +89,6 @@ namespace Pomodoro_Project
                                         case 5:
                                             subMenu = false;
                                             break;
-                                        case 6:
-
-                                            break;
                                         default:
                                             Console.WriteLine("Please enter the correct alternative!");
                                             break;
@@ -102,7 +100,6 @@ namespace Pomodoro_Project
                                     Console.ReadKey();
                                     Console.Clear();
                                 }
-
                             }
                             break;
                         case 3:
@@ -113,7 +110,6 @@ namespace Pomodoro_Project
                                 Console.WriteLine("The list contains no values. Press a key to return to Main Menu.");
                                 Console.ReadKey();
                                 MainMenu();
-
                             }
                             else
                             {
@@ -135,30 +131,32 @@ namespace Pomodoro_Project
                             menu = false;
 
                             break;
-                        case 4:        
-
+                        case 4:
+            
                             if (task.Count > 0)
                             {
+
                                 task.DisplayList();
                                 bool work = false;
-                                int index = 0;
+                                int index;
                                 do
                                 {
                                     try
                                     {
-                                        Console.WriteLine("Enter the number you would like to mark as finished: ");
+                                        Console.WriteLine("Enter the number you would like to mark as finished: "); //få ett nytt nummer i historiklistan
                                         index = Int32.Parse(Console.ReadLine());
-                                    }
-                                    catch (System.Exception)
-                                    {
 
+                                        HistoryList.AddToHistory(index, HistoryList, task);
+                                        task.RemoveAt(index);           //Tar bort aktiviteten från original listan.
+                                        
+                                        //HÄR KAN DET LÖSAS HistoryList.Count GES TILL TASK INDEX.NUMBER                LÄGGS TILL I FOREACH, TAS BORT I NÄSTLAD FOREACH
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        Console.WriteLine(e.Message);
                                         Console.WriteLine("Enter a valid number!");
                                         work = true;
-
                                     }
-
-                                    HistoryList.Add(task[index]);
-                                    task.RemoveAt(index);
                                 }
                                 while (work == true);
                             }
@@ -182,7 +180,7 @@ namespace Pomodoro_Project
                             else
                             {
                                 Console.Write("There are no activities to be shown.");
-                                Console.WriteLine("Press any key to return to the Main Menu");;
+                                Console.WriteLine("Press any key to return to the Main Menu"); ;
                                 Console.ReadKey();
                                 MainMenu();
                             }
@@ -278,9 +276,9 @@ namespace Pomodoro_Project
                                     Console.WriteLine("Timer starts now! At any time enter [Q] to return to Main Menu.");
                                     Console.WriteLine("Or anything else to start your brake!");
                                     string cancel = Console.ReadLine().ToUpper();
-                                    if(cancel == "Q")
+                                    if (cancel == "Q")
                                     {
-                                      MainMenu();
+                                        MainMenu();
                                     }
                                     timer.StartBreakTimer();
                                     Console.WriteLine("Press any key to return to Main Menu.");
@@ -290,8 +288,8 @@ namespace Pomodoro_Project
                                 }
                                 else
                                 {
-                                Console.WriteLine("You didnt set a timer. Press any key to return to Main Menu.");
-                                Console.ReadKey();
+                                    Console.WriteLine("You didnt set a timer. Press any key to return to Main Menu.");
+                                    Console.ReadKey();
                                 }
 
                             }
