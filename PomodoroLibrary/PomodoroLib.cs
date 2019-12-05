@@ -2,7 +2,6 @@
 using System.Timers;
 using System.Collections.Generic;
 using System.Linq;
-using PomodoroLibrary;
 namespace PomodoroLibrary
 {
     public class TaskItem

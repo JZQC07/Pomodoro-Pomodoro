@@ -23,7 +23,6 @@ namespace Pomodoro_Project
         TaskItem item = new TaskItem();
         TaskList HistoryList = new TaskList();
         PomodoroLibrary.PomodoroTimer timer;
-        public bool mainList = true;
 
         public void MainMenu()
         {
