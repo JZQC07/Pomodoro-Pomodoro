@@ -71,7 +71,7 @@ namespace Pomodoro_Project
 
                                         case 2:
                                             newItem.Title = "Workout";
-                                            task.NewTaskItem(newItem);
+                                            task.NewTaskItem(newItem); //Hej
                                             subMenu = false;
                                             break;
 
