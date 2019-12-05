@@ -44,9 +44,8 @@ namespace PomodoroLibrary
         public void Add(string title, string desc)
         {
             int NumberOfTasks = this.Count();
-            int number = NumberOfTasks++;   //När läggs till i historiklistan måste de få HistoryList.Count som nummer        
+            int number = NumberOfTasks++;
 
-            /*------------------------------------------*/
             this.Add(new TaskItem(number, title, desc));
         }
         public void DisplayList()
@@ -100,12 +99,11 @@ namespace PomodoroLibrary
         public void AddToHistory(int index, TaskList HistoryList, TaskList task)
         {
             int HistoryNumber = HistoryList.Count();
-            int number = HistoryNumber++;   //När läggs till i historiklistan måste de få HistoryList.Count som nummer     
+            int number = HistoryNumber++;     
             string title = task[index].Title;
-            string desc = task[index].Description;     
+            string desc = task[index].Description;
 
-            /*------------------------------------------*/
-            HistoryList.Add(new TaskItem(number, title, desc));
+            HistoryList.Add(new TaskItem(number, title, desc)); //Nytt objekt med de satta värdena läggs i Historielistan.
         }
     }
 

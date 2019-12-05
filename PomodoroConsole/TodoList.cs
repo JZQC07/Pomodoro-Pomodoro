@@ -114,7 +114,7 @@ namespace Pomodoro_Project
                             {
                                 try
                                 {
-                                    task.RemoveTaskItem(); //Skickas till removetaskitem metoden
+                                    task.RemoveTaskItem();
                                     MainMenu();
 
                                 }
@@ -142,13 +142,11 @@ namespace Pomodoro_Project
                                 {
                                     try
                                     {
-                                        Console.WriteLine("Enter the number you would like to mark as finished: "); //få ett nytt nummer i historiklistan
+                                        Console.WriteLine("Enter the number you would like to mark as finished: ");
                                         index = Int32.Parse(Console.ReadLine());
 
                                         HistoryList.AddToHistory(index, HistoryList, task);
                                         task.RemoveAt(index);           //Tar bort aktiviteten från original listan.
-                                        
-                                        //HÄR KAN DET LÖSAS HistoryList.Count GES TILL TASK INDEX.NUMBER                LÄGGS TILL I FOREACH, TAS BORT I NÄSTLAD FOREACH
                                     }
                                     catch (Exception e)
                                     {
