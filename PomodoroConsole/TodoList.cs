@@ -283,7 +283,6 @@ namespace Pomodoro_Project
                                       MainMenu();
                                     }
                                     timer.StartBreakTimer();
-                                    Console.WriteLine("Congratulations! You have finished your task!");
                                     Console.WriteLine("Press any key to return to Main Menu.");
                                     Console.ReadLine();
                                     MainMenu();
