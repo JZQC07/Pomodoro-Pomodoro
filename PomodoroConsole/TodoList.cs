@@ -137,6 +137,7 @@ namespace Pomodoro_Project
                                 task.DisplayList();
                                 bool work = false;
                                 string index;
+                                int intIndex;
                                 do
                                 {
                                     try
@@ -144,21 +145,22 @@ namespace Pomodoro_Project
                                         Console.WriteLine("Enter the number you would like to mark as finished: ");
                                         Console.WriteLine("Or press [Q] to return to Main Menu.");
                                         index = Console.ReadLine().ToUpper();
-                                        int intIndex = Convert.ToInt32(index);
+                                        
                                         if (index == "Q")
                                         {
-                                            Console.WriteLine("Press any key to return to Main Menu.");         //GÅR INTE ATTA MARKERA OEXISTERANDE NUMMER SOM FÄRDIG, DÅ KAN VI ALDRIG LÄNGRE SÄTTA NÅGON UPPGIFT SOM FÄRDIG??? MÅSTE FIXAS.
+                                            Console.WriteLine("Press any key to return to Main Menu."); //******GÅR INTE ATTA MARKERA OEXISTERANDE NUMMER i listan SOM FÄRDIG, DÅ KAN VI ALDRIG LÄNGRE SÄTTA NÅGON UPPGIFT SOM FÄRDIG NÄR VI GÖR OM DET??? MÅSTE FIXAS******
                                             Console.ReadKey();
                                             MainMenu();
                                         }
                                         else
                                         {
+                                            intIndex = Convert.ToInt32(index);
                                             HistoryList.AddToHistory(intIndex, HistoryList, task);
                                             task.RemoveAt(intIndex);
                                             //Tar bort aktiviteten från original listan.
                                         }
                                     }
-                                    catch (Exception e)                                                     //<---------- Vi hamnar alltid här?
+                                    catch (Exception e)                                                     
                                     {
                                         Console.WriteLine(e.Message);
                                         Console.WriteLine("Enter a valid number!");
