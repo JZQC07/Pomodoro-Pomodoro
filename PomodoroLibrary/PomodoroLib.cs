@@ -111,6 +111,7 @@ namespace PomodoroLibrary
             string desc = task[intIndex].Description;
 
             HistoryList.Add(new TaskItem(number, title, desc)); //Nytt objekt med de satta värdena läggs i Historielistan.
+            
         }
     }
 

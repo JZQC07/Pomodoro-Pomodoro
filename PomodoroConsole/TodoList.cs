@@ -162,6 +162,13 @@ namespace Pomodoro_Project
                                         {
 
                                             HistoryList.AddToHistory(intIndex, HistoryList, task);
+                                            foreach (TaskItem t in task)
+                                            {
+                                                if (t.Number > task[intIndex].Number)           //Löser så att numret för objekten som ligger efter objektet som tas bort i listan blir -1.   <-------- 
+                                                {
+                                                    t.Number--;
+                                                }
+                                            }
                                             task.RemoveAt(intIndex);
                                             //Tar bort aktiviteten från original listan.
                                         }
