@@ -63,7 +63,9 @@ body {
   text-align:center;
   background : #333; /*https://codepen.io/rajdgreat007/pen/ZpZWbw*/
   position: relative;
-  left: 300px;    /*Flyttar timer + ram /JS*/
+  left: 0px;    /*Flyttar timer + ram /JS*/ /*Bytt från 300px till 0px*/ 
+  color: #e5e5e5;
+  display: inline-block;
 }
 
 #timer{ 
@@ -100,14 +102,16 @@ body {
 #buttons button { 
   background:#4da6ff; 
   border:none; 
-  color:#fff; 
+  color:black; 
   cursor:pointer; 
   padding:5px; 
-  width:90px; 
+  widows: 120px;; 
   margin:10px auto;
   font-size:14px;
   height : 50px;
   border-radius : 50px;
+  display: inline-block;
+
 }
 
 #buttons button#shortBreak{
