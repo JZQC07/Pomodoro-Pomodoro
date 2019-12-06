@@ -20,7 +20,6 @@ namespace Pomodoro_Project
     class Menu
     {
         TaskList task = new TaskList();
-        TaskItem item = new TaskItem();
         TaskList HistoryList = new TaskList();
         PomodoroLibrary.PomodoroTimer timer;
 
@@ -131,7 +130,7 @@ namespace Pomodoro_Project
 
                             break;
                         case 4:
-            
+
                             if (task.Count > 0)
                             {
 
@@ -146,7 +145,9 @@ namespace Pomodoro_Project
                                         index = Int32.Parse(Console.ReadLine());
 
                                         HistoryList.AddToHistory(index, HistoryList, task);
-                                        task.RemoveAt(index);           //Tar bort aktiviteten från original listan.
+                                        task.RemoveAt(index);
+                                        //Tar bort aktiviteten från original listan.
+
                                     }
                                     catch (Exception e)
                                     {

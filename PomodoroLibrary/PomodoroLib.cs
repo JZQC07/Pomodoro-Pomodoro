@@ -10,8 +10,6 @@ namespace PomodoroLibrary
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsCompleted { get; set; }
-        public int NumberOfTasks { get; set; }
-
         public TaskItem()
         {
 
@@ -94,16 +92,16 @@ namespace PomodoroLibrary
             Console.WriteLine("Mata in nummer för vilken task du vill ta bort från din lista: ");
             DisplayList();
             int removeChoice = Int32.Parse(Console.ReadLine());
-            this.RemoveAt(removeChoice);
+            this.RemoveAt(removeChoice);                            //Alla objekt som ligger efter objektet man tar bort måste decrementeras.
         }
         public void AddToHistory(int index, TaskList HistoryList, TaskList task)
         {
             int HistoryNumber = HistoryList.Count();
-            int number = HistoryNumber++;     
+            int number = HistoryNumber++;
             string title = task[index].Title;
             string desc = task[index].Description;
 
-            HistoryList.Add(new TaskItem(number, title, desc)); //Nytt objekt med de satta värdena läggs i Historielistan.
+            HistoryList.Add(new TaskItem(number, title, desc)); //Nytt objekt med de satta värdena läggs i Historielistan. 
         }
     }
 
