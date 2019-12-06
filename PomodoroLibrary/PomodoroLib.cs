@@ -92,12 +92,14 @@ namespace PomodoroLibrary
             Console.WriteLine("Mata in nummer för vilken task du vill ta bort från din lista: ");
             DisplayList();
             int removeChoice = Int32.Parse(Console.ReadLine());
-                                                                    //Alla objekt som ligger efter objektet man tar bort måste decrementeras. DONE
+            //Alla objekt som ligger efter objektet man tar bort måste decrementeras. DONE
 
-            foreach(TaskItem t in this) //Löser så att numret för objekten som ligger efter objektet som tas bort i listan blir +1.   <--------
+            foreach (TaskItem t in this) //Löser så att numret för objekten som ligger efter objektet som tas bort i listan blir +1.   <--------
             {
-                if(t.Number > this[removeChoice].Number)                                           
-                t.Number--;
+                if (t.Number > this[removeChoice].Number)
+                {
+                    t.Number--;
+                }
             }
             this.RemoveAt(removeChoice);
         }
