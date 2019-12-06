@@ -135,35 +135,52 @@ namespace Pomodoro_Project
                             {
 
                                 task.DisplayList();
-                                bool work = false;
+                                
                                 string index;
                                 int intIndex;
+                                bool work = false;
                                 do
                                 {
                                     try
                                     {
+                                        
                                         Console.WriteLine("Enter the number you would like to mark as finished: ");
                                         Console.WriteLine("Or press [Q] to return to Main Menu.");
-                                        index = Console.ReadLine().ToUpper();
+                                    
+                                        index = Console.ReadLine();
                                         
-                                        if (index == "Q")
+                                        if (index == "Q" || index == "q")
                                         {
-                                            Console.WriteLine("Press any key to return to Main Menu."); //******GÅR INTE ATTA MARKERA OEXISTERANDE NUMMER i listan SOM FÄRDIG, DÅ KAN VI ALDRIG LÄNGRE SÄTTA NÅGON UPPGIFT SOM FÄRDIG NÄR VI GÖR OM DET??? MÅSTE FIXAS******
+                                            Console.WriteLine("Press any key to return to Main Menu.");
                                             Console.ReadKey();
                                             MainMenu();
+                                            
+                                            
                                         }
-                                        else
+                                        else if(Int32.TryParse(index, out intIndex) && intIndex <= task.Count)  
                                         {
-                                            intIndex = Convert.ToInt32(index);
+                                            
                                             HistoryList.AddToHistory(intIndex, HistoryList, task);
                                             task.RemoveAt(intIndex);
                                             //Tar bort aktiviteten från original listan.
                                         }
+                                        else if (!Int32.TryParse(index, out intIndex))     
+                                        {
+                                            Console.WriteLine("You entered a faulty number... Press any key to return to Main Menu.");
+                                            Console.ReadKey();
+                                            MainMenu();
+                                        }
                                     }
-                                    catch (Exception e)                                                     
+                                    catch (System.IndexOutOfRangeException e)                                                     
                                     {
                                         Console.WriteLine(e.Message);
-                                        Console.WriteLine("Enter a valid number!");
+                                        Console.WriteLine("INDEXOUTOFRANGE");
+                                        
+                                    }
+                                    catch (System.ArgumentOutOfRangeException p)
+                                    {
+                                        Console.WriteLine(p.Message);
+                                        Console.WriteLine("ARGUMENTOUTOFRANGE");
                                         work = true;
                                     }
                                 }

@@ -94,23 +94,23 @@ namespace PomodoroLibrary
             int removeChoice = Int32.Parse(Console.ReadLine());
             //Alla objekt som ligger efter objektet man tar bort måste decrementeras. DONE
 
-            foreach (TaskItem t in this) //Löser så att numret för objekten som ligger efter objektet som tas bort i listan blir +1.   <--------
+            foreach (TaskItem t in this) 
             {
-                if (t.Number > this[removeChoice].Number)
+                if (t.Number > this[removeChoice].Number)           //Löser så att numret för objekten som ligger efter objektet som tas bort i listan blir -1.   <-------- 
                 {
-                    t.Number--;
+                    t.Number--;                         
                 }
             }
             this.RemoveAt(removeChoice);
         }
-        public void AddToHistory(int index, TaskList HistoryList, TaskList task)
+        public void AddToHistory(int intIndex, TaskList HistoryList, TaskList task)
         {
             int HistoryNumber = HistoryList.Count();
             int number = HistoryNumber++;
-            string title = task[index].Title;
-            string desc = task[index].Description;
+            string title = task[intIndex].Title;
+            string desc = task[intIndex].Description;
 
-            HistoryList.Add(new TaskItem(number, title, desc)); //Nytt objekt med de satta värdena läggs i Historielistan. 
+            HistoryList.Add(new TaskItem(number, title, desc)); //Nytt objekt med de satta värdena läggs i Historielistan.
         }
     }
 
