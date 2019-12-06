@@ -135,7 +135,7 @@ namespace Pomodoro_Project
                             {
 
                                 task.DisplayList();
-                                
+
                                 string index;
                                 int intIndex;
                                 bool work = false;
@@ -143,45 +143,48 @@ namespace Pomodoro_Project
                                 {
                                     try
                                     {
-                                        
+
                                         Console.WriteLine("Enter the number you would like to mark as finished: ");
                                         Console.WriteLine("Or press [Q] to return to Main Menu.");
-                                    
+
                                         index = Console.ReadLine();
-                                        
+                                        work = false;
+
                                         if (index == "Q" || index == "q")
                                         {
                                             Console.WriteLine("Press any key to return to Main Menu.");
                                             Console.ReadKey();
                                             MainMenu();
-                                            
-                                            
+
+
                                         }
-                                        else if(Int32.TryParse(index, out intIndex) && intIndex <= task.Count)  
+                                        else if (Int32.TryParse(index, out intIndex) && intIndex <= task.Count)
                                         {
-                                            
+
                                             HistoryList.AddToHistory(intIndex, HistoryList, task);
                                             task.RemoveAt(intIndex);
                                             //Tar bort aktiviteten från original listan.
                                         }
-                                        else if (!Int32.TryParse(index, out intIndex))     
+                                        else if (!Int32.TryParse(index, out intIndex) || intIndex > task.Count)
                                         {
-                                            Console.WriteLine("You entered a faulty number... Press any key to return to Main Menu.");
+                                            Console.WriteLine("You entered a faulty number... Press any key to try again...");
                                             Console.ReadKey();
-                                            MainMenu();
+                                            work = true;
                                         }
                                     }
-                                    catch (System.IndexOutOfRangeException e)                                                     
+                                    catch (System.IndexOutOfRangeException e)
                                     {
                                         Console.WriteLine(e.Message);
                                         Console.WriteLine("INDEXOUTOFRANGE");
-                                        
+                                        work = true;
+
                                     }
-                                    catch (System.ArgumentOutOfRangeException p)
+                                    catch (System.ArgumentOutOfRangeException p)        //OM ANVÄNDAREN MATAR IN NUMMER SOM ÄR MER ÄN LISTANS LÄNGD  0-X. Så kommer man aldrig mer kunna ta bort aktiviteter, men de försvinner ändå?.. 
                                     {
                                         Console.WriteLine(p.Message);
-                                        Console.WriteLine("ARGUMENTOUTOFRANGE");
-                                        work = true;
+                                        Console.WriteLine("You entered a faulty number.. Press any key to try again..");
+                                        Console.ReadKey();
+                                        MainMenu();
                                     }
                                 }
                                 while (work == true);
