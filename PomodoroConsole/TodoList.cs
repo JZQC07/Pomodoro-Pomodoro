@@ -270,6 +270,7 @@ namespace Pomodoro_Project
                                     int setBreakSeconds = 0;
                                     Console.WriteLine("How many minutes do you want to focus on your activity?(Min 0, max 30)"); //
                                     setTaskMinutes = int.Parse(Console.ReadLine());
+                                    
                                     //Ifsatser kontrollerar att värdet är ok
                                     if (setTaskMinutes < 0 || setTaskMinutes > 30)
                                     {
@@ -277,24 +278,30 @@ namespace Pomodoro_Project
                                         Console.WriteLine("Wrong value! Minutes set to [0].");
 
                                     }
+
                                     Console.WriteLine("How many seconds do you want to focus on your activity?");
                                     setTaskSeconds = int.Parse(Console.ReadLine());
+
                                     if (setTaskSeconds < 0 || setTaskSeconds > 60)
                                     {
                                         setTaskSeconds = 0;
                                         Console.WriteLine("Wrong value! Seconds set to [0].");
 
                                     }
-                                    Console.WriteLine("How many minutes do you want your brake to be?(Min 0, max 30");
+                                    
+                                    Console.WriteLine("How many minutes do you want your break to be?(Min 0, max 30)");
                                     setBreakMinutes = int.Parse(Console.ReadLine());
+                                    
                                     if (setBreakMinutes < 0 || setBreakMinutes > 30)
                                     {
                                         setBreakMinutes = 0;
                                         Console.WriteLine("Wrong value! Minutes set to [0].");
 
                                     }
-                                    Console.WriteLine("How many seconds do you want your brake to be?(Min 0, max 30");
+                                    
+                                    Console.WriteLine("How many seconds do you want your break to be?");
                                     setBreakSeconds = int.Parse(Console.ReadLine());
+                                   
                                     if (setBreakSeconds < 0 || setBreakSeconds > 60)
                                     {
                                         setBreakSeconds = 0;
@@ -303,15 +310,20 @@ namespace Pomodoro_Project
                                     Console.Clear();
                                     Console.WriteLine("Press any button to start your task");
                                     Console.ReadLine();
+
                                     //Skapar ett nytt objet av timerklassen Pomodoro samt anropar de metoder som krävs för att köra timern
                                     timer = new PomodoroLibrary.PomodoroTimer(setTaskMinutes, setTaskSeconds, setBreakMinutes, setBreakSeconds);
+
                                     //Två delegates som refereras från respektive start/break timer till metoden PrintTimer
                                     timer.addDelegateToFocus = PrintTimer;
                                     timer.addDelegateToBreak = PrintTimer;
+
                                     timer.StartTaskTimer();
                                     Console.WriteLine("Timer starts now! At any time enter [Q] to return to Main Menu.");
-                                    Console.WriteLine("Or anything else to start your brake!");
+                                    Console.WriteLine("Or anything else to start your break!");
+                                    
                                     string cancel = Console.ReadLine().ToUpper();
+                                   
                                     if (cancel == "Q")
                                     {
                                         MainMenu();
@@ -319,8 +331,9 @@ namespace Pomodoro_Project
                                     timer.StartBreakTimer();
                                     Console.WriteLine("Press any key to return to Main Menu.");
                                     Console.ReadLine();
-                                    MainMenu();
+                                    
                                     //Åter till huvudmenyn
+                                    MainMenu();
                                 }
                                 else
                                 {
@@ -347,7 +360,7 @@ namespace Pomodoro_Project
                 }
             }
         }
-
+        // Metod som refererar till timern via invoke() i Timereventet i klassbiblioteket. 
         public void PrintTimer(int TaskMinutes, int TaskSeconds)
         {
             Console.Clear();
